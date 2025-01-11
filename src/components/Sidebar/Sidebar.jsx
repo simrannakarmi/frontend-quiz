@@ -10,7 +10,7 @@ const Sidebar = () => {
     <div className="bg-accent w-72 text-xl text-neutral">
       <div className="flex flex-col gap-6 items-center py-10">
         <div className="flex justify-start border border-neutral w-4/5 border-opacity-40 rounded-lg py-2 px-4 hover:bg-green-50 active:bg-active">
-          <Link to="" className="flex gap-4">
+          <Link to="/user-dashboard" className="flex gap-4">
            
             <img src={take_quiz} className="w-8 opacity-70" />
             Take Quiz

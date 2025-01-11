@@ -19,10 +19,18 @@ api.interceptors.request.use((config) => {
 
 export const login = async (credentials) => {
   try {
-    const response = await api.post("/account/login/", credentials);
+    const response = await axios.post(
+      `${API_URL}/account/login/`,
+      credentials,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
     return response.data;
   } catch (error) {
-    console.error("Login failed", error);
+    console.error("Login failed api.jsx", error);
     throw error;
   }
 };
@@ -37,8 +45,8 @@ export const getQuizzes = async () => {
   return response.data;
 };
 
-export const getQuiz = async (quizId) => {
-  const response = await api.get(`/quizzes/${quizId}/`);
+export const getQuizById = async (quizId) => {
+  const response = await api.get(`/quiz/${quizId}/`);
   return response.data;
 };
 
@@ -52,8 +60,47 @@ export const getChoices = async () => {
   return response.data;
 };
 
+export const submitResponses = async ({ quizId, answers, score }) => {
+  const formattedResponses = Object.entries(answers).map(
+    ([questionId, choiceText]) => ({
+      question: questionId,
+      choice: choiceText,
+    })
+  );
+  try {
+    const response = await api.post(`/quiz-submit/${quizId}/`, {
+      quiz_id: quizId,
+      responses: formattedResponses,
+      score,
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Failed to submit responses", error);
+    throw error;
+  }
+};
+
+export const getQuizResult = async (quizId) => {
+  const response = await api.get(`/quiz-result/${quizId}/`);
+  return response.data;
+
+  // const data = await response.json();
+  // return data;
+};
+
+// export const submitResponses = async ({responses}) => {
+//   const response = await api.post("/responses/", responses);
+//   return response.data;
+// };
+
 export const getResponses = async () => {
   const response = await api.get("/responses/");
+  return response.data;
+};
+
+// ai quiz generate
+export const generateQuiz = async (description) => {
+  const response = await api.post("/generate-quiz/", { description });
   return response.data;
 };
 

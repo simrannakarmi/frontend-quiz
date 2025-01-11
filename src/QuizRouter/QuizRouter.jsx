@@ -10,6 +10,8 @@ import QuestionsViewPage from "../pages/QuestionsViewPage/QuestionsViewPage";
 import ResponsesPage from "../pages/ResponsesPage/ResponsesPage";
 import AnalyticsPage from "../pages/AnalyticsPage/AnalyticsPage";
 import QuizDetailPage from "../pages/QuizDetailPage/QuizDetailPage";
+import PlayQuizPage from "../pages/PlayQuizPage/PlayQuizPage";
+import QuizResultPage from "../pages/QuizResultPage/QuizResultPage";
 import { AuthProvider } from "../context/AuthContext";
 
 const QuizRouter = () => {
@@ -24,7 +26,9 @@ const QuizRouter = () => {
           <Route path="/admin-dashboard" element={<AdminDashboard />} />
           <Route path="/create-quiz" element={<CreateQuizPage />} />
           <Route path="/quizzes" element={<QuizzesPage />} />
-          <Route path="/quizzes/:id" element={<QuizDetailPage />} />
+          <Route path="/quiz/:id" element={<QuizDetailPage />} />
+          <Route path="/quiz-result/:id" element={<QuizResultPage />} />
+          <Route path="/play-quiz/:id" element={<PlayQuizPage />} />
           <Route path="/questions" element={<QuestionsViewPage />} />
           <Route path="/user-responses" element={<ResponsesPage />} />
           <Route path="/analytics" element={<AnalyticsPage />} />

@@ -1,6 +1,6 @@
 import { useState, useEffect, createContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { getCurrentUser, login as apiLogin, logoutUser } from "../Services/api";
+import { login as apiLogin, getCurrentUser, logoutUser } from "../Services/api";
 
 const AuthContext = createContext();
 
@@ -37,10 +37,10 @@ export const AuthProvider = ({ children }) => {
       setIsAuthenticated(true);
       if (userData.is_staff) {
         console.log("is staff");
-        navigate('/admin-dashboard');
+        navigate("/admin-dashboard");
       } else {
         console.log(userData.is_staff);
-        navigate('/user-dashboard');
+        navigate("/user-dashboard");
       }
     } catch (error) {
       console.error("Failed to log in", error);
@@ -54,14 +54,16 @@ export const AuthProvider = ({ children }) => {
       setUser(null);
       localStorage.removeItem("token");
       setIsAuthenticated(false);
-      navigate('/login');
+      navigate("/login");
     } catch (error) {
       console.error("Failed to logout", error);
     }
   };
 
   return (
-    <AuthContext.Provider value={{ user, loading, isAuthenticated, setUser, login, logout }}>
+    <AuthContext.Provider
+      value={{ user, loading, isAuthenticated, setUser, login, logout }}
+    >
       {children}
     </AuthContext.Provider>
   );

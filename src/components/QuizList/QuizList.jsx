@@ -20,15 +20,15 @@ const QuizList = () => {
   }, []);
 
   return (
-    <div className="bg-accent w-4/5 h-3/5 flex flex-col items-center rounded-lg">
+    <div className="bg-accent w-4/5 h-3/5 flex flex-col items-center py-4 rounded-lg">
       <h2 className="font-bold text-2xl py-10">Available Quizzes</h2>
-      <div className="bg-green-50 w-4/5 px-10 py-4 border border-gray-300">
+      <div className="bg-green-50 w-4/5 px-10 py-4 overflow-auto border border-gray-300">
         <h2 className="font-bold text-lg py-4">Quiz Names</h2>
         {error && <p>{error}</p>}
         <ul className="flex flex-col gap-4">
           {quizzes.map((quiz) => (
-            <li key={quiz.id}>
-              <Link to={`/quizzes/${quiz.id}`}>{quiz.title}</Link>
+            <li key={quiz.id} className="hover:text-info hover:font-semibold">
+              <Link to={`/quiz/${quiz.id}`}>{quiz.title}</Link>
             </li>
           ))}
         </ul>

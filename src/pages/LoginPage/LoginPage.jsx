@@ -17,7 +17,6 @@ const LoginPage = () => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [message, setMessage] = useState("");
 
-
   const handleToggleVisibility = () => {
     setIsPasswordVisible((prevState) => !prevState);
   };
@@ -32,10 +31,11 @@ const LoginPage = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    // console.log(credentials);
     try {
       await login(credentials);
     } catch (error) {
-      console.error('Failed to log in', error);
+      console.error("Failed to log in", error);
       setMessage("Failed to log in. Please check your credentials.");
     }
   };
